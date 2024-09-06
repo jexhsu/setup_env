@@ -1,0 +1,82 @@
+# Info
+clear && neofetch
+
+# Theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Plugins
+plugins=(
+    git
+    sudo
+    brew
+    aliases
+    web-search
+    alias-finder
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+)
+
+# aliases
+# system
+alias cls='clear'
+alias srmc='rmCurDirHelper'
+alias mdc='mkdirCd'
+alias srm='gio trash'
+alias rm='echo -e "\033[31mrm command is disabled!\033[0m"'
+alias kbp='kill_by_port'
+# Nginx
+alias nginxtr='sudo nginx -t && sudo nginx -s reload'
+# Exa
+alias le='exa --icons'
+alias tree='exa --icons -T --git-ignore'
+# Neovim
+alias nv='nvim'
+# Git
+alias rollback='helperRollback'
+
+# Functions
+helperRollback() {
+    srm ./*
+    git restore --staged .
+    git restore .
+}
+
+kill_by_port() {
+    local port=$1
+    sudo kill -9 $(sudo lsof -t -i:$port)
+}
+
+rmCurDirHelper() {
+    self_dir=$(pwd)
+    cd ..
+    srm "$self_dir"
+}
+
+mkdirCd() {
+    mkdir "$1"
+    cd $(pwd)/"$1"
+}
+
+# Environment Variables
+export HOMEBREW_NO_ENV_HINTS=1
+export PATH="/usr/local/bin:$PATH"
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/opt/openjdk@17/bin:$PATH"
+
+# Sourcing Configuration
+source $ZSH/oh-my-zsh.sh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# brew
+# eval must be placed at the end of the file
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# thefuck
+eval $(thefuck --alias fuck)
+eval $(thefuck --alias shit)
+eval $(thefuck --alias crap)
