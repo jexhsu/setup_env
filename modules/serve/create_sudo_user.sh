@@ -16,6 +16,9 @@ if useradd -m -s /bin/bash "$username"; then
     echo "$username:$password" | chpasswd
     usermod -aG sudo "$username"
     print_message "${GREEN}" "User $username has been successfully created and added to the sudo group."
+    # Switch to the new user
+    print_message "${GREEN}" "Switching to user $username..."
+    sudo su - "$username" 
 else
     print_message "${RED}" "Failed to create user."
 fi

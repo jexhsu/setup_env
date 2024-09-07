@@ -41,14 +41,5 @@ for func in "${functions[@]}"; do
     else
         print_message "$YELLOW" "正在加载并执行 $func..."
         source "$SERVE_DIR/$func.sh"
-        
-        # 直接调用函数
-        if declare -f "$func" &> /dev/null; then
-            print_message "$YELLOW" "正在执行函数 $func..."
-            sleep 1
-            "$func"
-        else
-            print_message "$RED" "错误: 函数 '$func' 未定义。"
-        fi
     fi
 done

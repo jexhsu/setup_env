@@ -65,4 +65,4 @@ sshpass -p "$password" ssh-copy-id -o StrictHostKeyChecking=no "$username@$ip_nu
 
 # SSH login to remote server
 print_message "${GREEN}" "Connecting to the remote server..."
-ssh -o StrictHostKeyChecking=no "$username@$ip_number"
+sshpass -p "$password" ssh -o StrictHostKeyChecking=no "$username@$ip_number"
