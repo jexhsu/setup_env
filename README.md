@@ -1,4 +1,4 @@
-# Server Setup
+# Setup Env
 
 ## Overview
 
