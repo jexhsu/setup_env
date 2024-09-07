@@ -3,8 +3,11 @@
 # 设置 TEST_ENV 变量
 export TEST_ENV=true  
 
+# 获取当前脚本所在的目录
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # 加载初始环境
-source "./init.sh"
+source "$SCRIPT_DIR/init.sh"
 
 # 定义一个函数用于运行指定的 init.sh 脚本
 run_init_script() {

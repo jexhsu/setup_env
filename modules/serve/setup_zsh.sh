@@ -22,7 +22,7 @@ brew install zsh-autosuggestions zsh-syntax-highlighting romkatv/powerlevel10k/p
 
 # Copy config file
 print_message "${YELLOW}" "Copying config file to .zshrc..."
-cp -f ../../config/zshrc ~/.zshrc
+cp -f $ROOT_DIR/config/zshrc ~/.zshrc
 
 # Create a script file named safe_remove
 sudo bash -c 'cat <<EOF > /usr/local/bin/safe_remove

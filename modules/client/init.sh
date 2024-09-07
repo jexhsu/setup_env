@@ -33,7 +33,7 @@ for func in "${functions[@]}"; do
         print_message "$YELLOW" "测试环境: 跳过执行 $func..."
     else
         print_message "$YELLOW" "正在加载并执行 $func..."
-        source "$CLIENT_DIR/../modules/client/$func.sh"
+        source "$CLIENT_DIR/$func.sh"
         
         # 直接调用函数
         if declare -f "$func" &> /dev/null; then

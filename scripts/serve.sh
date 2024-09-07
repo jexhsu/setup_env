@@ -3,8 +3,11 @@
 # 设置 TEST_ENV 变量
 export TEST_ENV=false
 
+# 获取当前脚本所在的目录
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # 加载初始环境
-source "./init.sh"
+source "$SCRIPT_DIR/init.sh"
 
 # 加载 init.sh 脚本
 echo "Loading serve init script..."
