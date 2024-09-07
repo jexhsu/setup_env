@@ -27,8 +27,8 @@ alias kbp='kill_by_port'
 # Nginx
 alias nginxtr='sudo nginx -t && sudo nginx -s reload'
 # Exa
-alias le='exa --icons'
-alias tree='exa --icons -T --git-ignore'
+alias le='exa --icons --sort=modified -r'
+alias tree='exa --icons -T --git-ignore --sort=modified -r'
 # Neovim
 alias nv='nvim'
 # Git

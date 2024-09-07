@@ -2,7 +2,7 @@
 
 # Check if the script is run as root
 if [ "$EUID" -ne 0 ]; then
-    printf "${RED}Please run as root or use sudo.${NC}\n"
+    print_message "${RED}" "Please run as root or use sudo."
     exit 1
 fi
 
@@ -17,4 +17,4 @@ hostnamectl set-hostname "$new_hostname"
 sed -i "s/$old_hostname/$new_hostname/g" /etc/hosts
 
 # Notify the user of the successful change
-printf "${GREEN}Hostname changed from '${YELLOW}$old_hostname${GREEN}' to '${YELLOW}$new_hostname${GREEN}'.${NC}\n"
+print_message "${GREEN}" "Hostname changed from '${YELLOW}$old_hostname${GREEN}' to '${YELLOW}$new_hostname${GREEN}'."

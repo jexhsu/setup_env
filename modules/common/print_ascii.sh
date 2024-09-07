@@ -1,11 +1,8 @@
 #!/bin/bash
 
-# 获取当前脚本所在的目录
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 # 确保传入了参数
 if [ -z "$1" ]; then
-    echo "Usage: $0 <name>"
+    print_message "${RED}" "用法: $0 <name>"
     exit 1
 fi
 
@@ -14,10 +11,8 @@ name="$1"
 name_start="${name}_start"
 name_end="${name}_end"
 
-echo "name: $name"
-
 # 定义 ASCII 艺术文件的绝对路径
-file="$SCRIPT_DIR/ascii_art.txt"
+file="$COMMON_DIR/ascii_art.txt"
 
 # 读取输入文件的内容
 if ! ascii_art=$(awk -v start="$name_start" -v end="$name_end" '
@@ -28,7 +23,7 @@ if ! ascii_art=$(awk -v start="$name_start" -v end="$name_end" '
         if (found) {print}
     }
 ' "$file"); then
-    echo "Error: Could not read from $file"
+    print_message "${RED}" "错误: 无法读取文件 $file"
     exit 1
 fi
 

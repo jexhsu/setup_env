@@ -3,29 +3,29 @@
 #TODO Write the corresponding configuration in .ssh/config
 
 # Remove spaces from variables
-function trim_spaces() {
+trim_spaces() {
     echo "$1" | tr -d ' '
 }
 
 # Validate if the username is legal (adjust as needed)
-function validate_username() {
+validate_username() {
     if [[ -z "$1" ]]; then
-        printf "${RED}Username cannot be empty.${NC}\n"
+        print_message "${RED}" "Username cannot be empty."
         return 1
     elif [[ ! "$1" =~ ^[a-zA-Z0-9_]+$ ]]; then
-        printf "${RED}Invalid username. Only letters, numbers, and underscores are allowed.${NC}\n"
+        print_message "${RED}" "Invalid username. Only letters, numbers, and underscores are allowed."
         return 1
     fi
     return 0
 }
 
 # Validate if the IP address is legal
-function validate_ip() {
+validate_ip() {
     if [[ -z "$1" ]]; then
-        printf "${RED}IP address cannot be empty.${NC}\n"
+        print_message "${RED}" "IP address cannot be empty."
         return 1
     elif [[ ! "$1" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
-        printf "${RED}Invalid IP address format. Please use xxx.xxx.xxx.xxx format.${NC}\n"
+        print_message "${RED}" "Invalid IP address format. Please use xxx.xxx.xxx.xxx format."
         return 1
     fi
     return 0
@@ -55,14 +55,14 @@ echo
 
 # Generate SSH key pair (if not exists)
 if [ ! -f ~/.ssh/id_rsa ]; then
-    printf "${YELLOW}SSH key not found. Generating a new one...${NC}\n"
+    print_message "${YELLOW}" "SSH key not found. Generating a new one..."
     ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
 fi
 
 # Copy SSH public key to remote server
-printf "${GREEN}Copying SSH key to the remote server...${NC}\n"
+print_message "${GREEN}" "Copying SSH key to the remote server..."
 sshpass -p "$password" ssh-copy-id -o StrictHostKeyChecking=no "$username@$ip_number"
 
 # SSH login to remote server
-printf "${GREEN}Connecting to the remote server...${NC}\n"
+print_message "${GREEN}" "Connecting to the remote server..."
 ssh -o StrictHostKeyChecking=no "$username@$ip_number"
