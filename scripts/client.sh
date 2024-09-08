@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# 设置 TEST_ENV 变量
+# Set TEST_ENV variable
 export TEST_ENV=false
 
-# 获取当前脚本所在的目录
+# Get the directory of the current script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# 加载初始环境
+# Load initial environment
 source "$SCRIPT_DIR/init.sh"
 
-# 加载 init.sh 脚本
+# Load init.sh script
 echo "Loading client init script..."
 if ! source "$SCRIPT_DIR/../modules/client/init.sh"; then
     echo "Error: Failed to load init.sh"

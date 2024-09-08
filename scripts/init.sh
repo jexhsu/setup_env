@@ -1,5 +1,5 @@
-# 加载 config.sh 文件
+# Load config.sh file
 source "$SCRIPT_DIR/../config/config.sh"
 
-# 加载公共模块
+# Load common modules
 source "$COMMON_DIR/init.sh"
